@@ -1,8 +1,10 @@
 require('./server-instrumentation/tracing')('otel-fullstack-poc-server1');
-const app = require('express')();
+const express = require('express');
+const app = express();
 const { trace, context } = require('@opentelemetry/api');
 const http = require('node:http');
 const { sleep3Sec } = require('rust-event-loop-lagger');
+const fs = require('fs/promises');
 
 app.use((_, __, next) => {
     const span = trace.getSpan(context.active());
@@ -10,11 +12,16 @@ app.use((_, __, next) => {
     next();
 });
 
-app.get('/sleep3sec', (_, res) => {
+app.use(express.static('public'))
+
+app.get('/')
+
+app.get('/sleep3sec', async (_, res) => {
     const span = trace.getSpan(context.active());
     span.recordException(new Error('server1 error'));
     sleep3Sec();
-    return res.send('Hello World!');
+    const html = await fs.readFile('./index.html', 'utf-8');
+    return res.send(html);
 });
 
 app.get('/call-2-sleep3sec-services', async (_, res) => {

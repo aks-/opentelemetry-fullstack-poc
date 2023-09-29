@@ -10,11 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/auto-instrumentations-web": "^0.33.1",
+    "@opentelemetry/context-zone": "^1.17.0",
     "@opentelemetry/core": "^1.17.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.43.0",
     "@opentelemetry/instrumentation-express": "^0.33.1",
     "@opentelemetry/instrumentation-http": "^0.43.0",
     "@opentelemetry/sdk-trace-node": "^1.17.0",
-    "express": "^4.18.2"
+    "@opentelemetry/sdk-trace-web": "^1.17.0",
+    "express": "^4.18.2",
+    "uuid": "^9.0.1",
+    "web-vitals": "^3.5.0"
   }
 }
