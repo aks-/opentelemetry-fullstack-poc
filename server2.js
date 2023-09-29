@@ -1,4 +1,4 @@
-require('./tracing')('otel-fullstack-poc-server2');
+require('./server-instrumentation/tracing')('otel-fullstack-poc-server2');
 const app = require('express')();
 const { sleep3Sec } = require('rust-event-loop-lagger');
 const { trace, context } = require('@opentelemetry/api');

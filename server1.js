@@ -1,4 +1,4 @@
-require('./tracing')('otel-fullstack-poc-server1');
+require('./server-instrumentation/tracing')('otel-fullstack-poc-server1');
 const app = require('express')();
 const { trace, context } = require('@opentelemetry/api');
 const http = require('node:http');
