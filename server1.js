@@ -6,15 +6,28 @@ const http = require('node:http');
 const { sleep3Sec } = require('rust-event-loop-lagger');
 const fs = require('fs/promises');
 
-app.use((_, __, next) => {
+// we don't have the endpoint for this implimented
+// const meterProvider = require('./server-instrumentation/metrics');
+// const meter = meterProvider.getMeter('otel-fullstack-poc-server1');
+// const requestCounter = meter.createCounter('otel-fullstack-poc-server1-requests', {
+//     description: 'Example of count all incoming requests',
+// });
+
+
+app.use((req, __, next) => {
+    //we dont have endpoint for sending metrics enabled
+    //requestCounter.add(1, {
+    //    path: req.path,
+    //    method: req.method
+    //});
     const span = trace.getSpan(context.active());
     span.setAttribute('server1-middleware', 'beep');
     next();
 });
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-app.get('/')
+app.get('/');
 
 app.get('/sleep3sec', async (_, res) => {
     const span = trace.getSpan(context.active());
