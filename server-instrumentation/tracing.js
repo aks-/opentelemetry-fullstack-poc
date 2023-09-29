@@ -8,6 +8,8 @@ const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http')
 const { SimpleSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/sdk-trace-base');
 const { diag, DiagConsoleLogger, DiagLogLevel, trace } = require('@opentelemetry/api');
 const { W3CTraceContextPropagator } = require("@opentelemetry/core");
+const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
+
 
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
@@ -30,6 +32,7 @@ function instrument(serviceName) {
 
     registerInstrumentations({
         instrumentations: [
+            getNodeAutoInstrumentations(),
             new ExpressInstrumentation(),
             new HttpInstrumentation(),
         ],
