@@ -10,12 +10,11 @@ const { diag, DiagConsoleLogger, DiagLogLevel, trace } = require('@opentelemetry
 const { W3CTraceContextPropagator } = require("@opentelemetry/core");
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
 
-
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
 function instrument(serviceName) {
     const collectorOptions = {
-        url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
+        url: `${process.env.OTEL_EXPORTER_OTLP_ENDPOINT}/v1/traces`,
     };
 
     const provider = new NodeTracerProvider(
