@@ -6,6 +6,36 @@ Welcome to the documentation for the OpenTelemetry Fullstack POC (Proof of Conce
 
 **Web Vitals:** The Web Vitals instrumentation and metrics wrok in Chrome browsers. While the project can be used with other browsers, it's recommended to use Chrome for the data accuracy and support.
 
+## Prerequisites
+
+Before you begin, make sure you have the following prerequisites in place:
+
+- **Node.js and npm**: Ensure that you have Node.js and npm (Node Package Manager) installed on your system. You can download them from [nodejs.org](https://nodejs.org/).
+
+- **Rust**: Ensure you have rust installed. You can download it like so https://doc.rust-lang.org/cargo/getting-started/installation.html
+
+- **Rust Event Loop Lagger**: The OpenTelemetry Fullstack POC relies on the `rust-event-loop-lagger` addon to create a 3-second event loop lag for testing purposes. To set up `rust-event-loop-lagger`, follow these steps:
+
+   1. Clone the `rust-event-loop-lagger` repository from [GitHub](https://github.com/aks-/rust-event-loop-lagger).
+
+   2. Navigate to the repository's directory and run the following commands to link it globally:
+
+      ```shell
+      npm install
+      npm run build
+      npm link
+      ```
+
+   3. After linking `rust-event-loop-lagger`, navigate to the root directory of the `opentelemetry-fullstack-poc` project and run the following command to link it as a dependency:
+
+      ```shell
+      npm install
+      npm link rust-event-loop-lagger
+      ```
+
+   This setup allows the POC to create the desired event loop lag during testing.
+
+
 ## Getting Started
 
 To get started, follow the instructions below:
