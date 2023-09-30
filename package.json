@@ -2,6 +2,10 @@
   "name": "opentelemetry-fullstack-poc",
   "version": "1.0.0",
   "description": "",
+  "engines" : {
+      "node" : ">=0.10.3 <0.12",
+      "npm" : ">=9.0.0"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
